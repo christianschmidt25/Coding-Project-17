@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 function Gallery() {
     const [tours, setTours] = useState([]); //sets tours as our initial variable, with the default tours being blank
 
-    const notInterested = () => {
-
+    const notInterested = (id) => {
+        setTours((prevTours) => prevTours.filter((tour) => tour.id !== id))
     }
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function Gallery() {
                         <p>{tour.info}</p>
                         <img src={tour.image}></img>
                         <br></br>
-                        <button onClick={notInterested}>Not Interested</button>
+                        <button onClick={() => notInterested(tour.id)}>Not Interested</button>
                         <p></p>
                     </li>
                 ))}
