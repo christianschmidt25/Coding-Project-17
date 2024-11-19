@@ -5,7 +5,16 @@ function Gallery() {
 
     const notInterested = (id) => {
         setTours((prevTours) => prevTours.filter((tour) => tour.id !== id))
-    }
+    };
+
+    const toggleExpanded = (id) => {
+        setTours((prevTours) =>
+            prevTours.map((tour) =>
+                tour.id === id ? { ...tour, expanded: !tour.expanded } : tour
+            )
+        );
+    };
+
 
     useEffect(() => {
         fetch('https://www.course-api.com/react-tours-project') //fetch tours from API
@@ -21,8 +30,15 @@ function Gallery() {
                 {tours.map(tour => (
                     <li key={tour.id}>
                         {tour.name} - ${tour.price}
-                        <p>{tour.info}</p>
-                        <img src={tour.image}></img>
+                        <br></br>
+                        <br></br>
+                        <button onClick={() => toggleExpanded(tour.id)}>{tour.expanded ?'Show Less':'Read More'}</button>
+                        {tour.expanded && ( 
+                            <>
+                                <p>{tour.info}</p>
+                                <img src={tour.image}></img>
+                            </>
+                        )}
                         <br></br>
                         <button onClick={() => notInterested(tour.id)}>Not Interested</button>
                         <p></p>
