@@ -25,7 +25,7 @@ function Gallery() {
 
     return (
         <div>
-            <h2>Tours</h2>
+            <h1>Tours</h1>
             <ul>
                 {tours.map(tour => (
                     <li key={tour.id}>
@@ -40,8 +40,10 @@ function Gallery() {
                             </>
                         )}
                         <br></br>
+                        <br></br>
                         <button onClick={() => notInterested(tour.id)}>Not Interested</button>
                         <p></p>
+                        <br></br>
                     </li>
                 ))}
             </ul>
