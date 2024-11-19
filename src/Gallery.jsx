@@ -4,13 +4,13 @@ function Gallery() {
     const [tours, setTours] = useState([]); //sets tours as our initial variable, with the default tours being blank
 
     const notInterested = (id) => {
-        setTours((prevTours) => prevTours.filter((tour) => tour.id !== id))
+        setTours((prevTours) => prevTours.filter((tour) => tour.id !== id)) //when selecting this button underneath the tour (associated by ID), it will filter out and remove from the tour list.
     };
 
     const toggleExpanded = (id) => {
         setTours((prevTours) =>
             prevTours.map((tour) =>
-                tour.id === id ? { ...tour, expanded: !tour.expanded } : tour
+                tour.id === id ? { ...tour, expanded: !tour.expanded } : tour //ternary operator to either show expanded tour (with info and picture), or just the tour name
             )
         );
     };
@@ -33,7 +33,7 @@ function Gallery() {
                         <br></br>
                         <br></br>
                         <button onClick={() => toggleExpanded(tour.id)}>{tour.expanded ?'Show Less':'Read More'}</button>
-                        {tour.expanded && ( 
+                        {tour.expanded && (  //when expanded, will show the tour info and the image
                             <>
                                 <p>{tour.info}</p>
                                 <img src={tour.image}></img>
